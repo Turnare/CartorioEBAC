@@ -2,7 +2,7 @@
 #include <stdlib.h>//biblioteca responsavel pela alocação de espaço na memoria
 #include <locale.h>//biblicote responsavel pela alocação de texto por regiao
 #include <string.h>//biblioteca responsavel por cuidar das string 
-
+#include <ctype.h>//biblioteca que me daa acesso a função tolower()
 //sem precisar que o programa execute a função a não ser que seja chamada.
 int registro()//registro do usuario
 {
@@ -109,53 +109,79 @@ int main()//menu
 	
 	int opcao = 0;
 	int laco = 1;
-	
+	char senhaADM[10] = "a";
 	setlocale(LC_ALL, "Portuguese");//seta a linguagem usada para a escrita?
 	
-	while(laco==1)
+	while(laco == 1)
 	{
-	
 		system("cls");
 		
-		
-		
 		printf("\t###Cartório EBAC ###\n\n");
-		printf("Escola a opcão desejada no menu:\n\n");//inicio do menu
+		printf("Login de ADMINSTRADOR!\n\nDigite sua senha:");
+		printf("\nOu digite Exit ou exit para sair\n");
+		scanf("%s", senhaADM);
 		
-		printf("\t1- Registar nomes.\n");
-		printf("\t2- Consultar nomes.\n");
-		printf("\t3- Deletar nomes.\n\n");	
-		printf("Ou pressione 4 para sair da execução\n");
-	//	printf("Esse software livre, feito pelo Turnare\n"); //usar depois.
-	
-		scanf("%d", &opcao);//"captura" o input do usuario 
-	
-		
-		
-		system ("cls");
-		
-	
-		switch(opcao)//inicio da seleção 
+		if(strcmp(senhaADM, "admin") == 0)//comparação de string em C
 		{
-			case 1:
-				registro();//chama a função registro			
-				break;
+		
+		
+			while(laco==1)
+			{
 			
-			case 2:
-				consulta();//chama a função consulta
-				break; 
+				system("cls");
+				
+				
+				
+				printf("\t###Cartório EBAC ###\n\n");
+				printf("Escola a opcão desejada no menu:\n\n");//inicio do menu
+				
+				printf("\t1- Registar nomes.\n");
+				printf("\t2- Consultar nomes.\n");
+				printf("\t3- Deletar nomes.\n\n");	
+				printf("Ou pressione 4 para sair da execução\n");
+			//	printf("Esse software livre, feito pelo Turnare\n"); //usar depois.
 			
-			case 3: 
-				deletar();//chama a função deletar
-				break;
-			case 4:
-				printf("Obrigado por usar o cartório da EBAC!!");
-				laco = 0;
-				break;
-			default:
-				printf("Esta opção é invalida\n");
-				system ("pause");
-				break;	
+				scanf("%d", &opcao);//"captura" o input do usuario 
+			
+				
+				
+				system ("cls");
+				
+			
+				switch(opcao)//inicio da seleção 
+				{
+					case 1:
+						registro();//chama a função registro			
+						break;
+					
+					case 2:
+						consulta();//chama a função consulta
+						break; 
+					
+					case 3: 
+						deletar();//chama a função deletar
+						break;
+					case 4:
+						printf("Obrigado por usar o cartório da EBAC!!");
+						laco = 0;
+						break;
+					default:
+						printf("Esta opção é invalida\n");
+						system ("pause");
+						break;	
+				}
+			}
+		}
+		else if(strcmp(senhaADM, "exit") == 0||strcmp(senhaADM, "Exit") == 0)
+		{
+			printf("Obrigado por usar o cartório da EBAC!!\n");
+			laco = 0;
+		}
+		else
+		{
+			printf("Senha incorreta\n");
+			system("pause");
+			
 		}
 	}
 }
